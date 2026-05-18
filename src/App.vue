@@ -49,11 +49,10 @@ onBeforeUnmount(() => {
   z-index: 10;
 }
 .app__main {
-  padding: 16px;
-  padding-bottom: calc(120px + env(safe-area-inset-bottom));
+  padding: 16px 16px calc(120px + env(safe-area-inset-bottom));
 }
 .app__main--full {
-  padding-bottom: env(safe-area-inset-bottom);
+  padding: 16px 16px env(safe-area-inset-bottom);
 }
 .app__bottom {
   position: fixed;

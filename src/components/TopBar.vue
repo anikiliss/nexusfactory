@@ -10,7 +10,10 @@ function openSettings() {
 
 <template>
   <header class="top-bar">
-    <span class="stat">0 MW</span>
+    <span class="stat">
+      <span class="stat__value">0</span>
+      <span class="stat__unit">MW</span>
+    </span>
     <button class="gear" @click="openSettings" aria-label="Настройки">
       ⚙
     </button>
@@ -22,21 +25,34 @@ function openSettings() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
-  border-bottom: 1px solid #333;
-  background: #1a1a1a;
-  color: #e5e5e5;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 }
 .stat {
-  font-size: 14px;
-  color: #aaa;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.stat__value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.stat__unit {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
 }
 .gear {
   background: none;
   border: none;
-  color: inherit;
-  font-size: 20px;
+  color: var(--text-dim);
+  font-size: 22px;
   padding: 4px 8px;
-  cursor: pointer;
+  line-height: 1;
+}
+.gear:active {
+  color: var(--accent);
 }
 </style>

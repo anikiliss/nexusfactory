@@ -37,37 +37,41 @@ const tabs = [
 .bottom-bar {
   display: flex;
   flex-direction: column;
-  background: #1a1a1a;
-  color: #e5e5e5;
-  border-top: 1px solid #333;
+  background: var(--surface);
+  color: var(--text);
+  border-top: 1px solid var(--border);
 }
 .search-row {
   padding: 8px 12px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--border);
 }
 .search {
   width: 100%;
-  background: #0d0d0d;
-  border: 1px solid #444;
-  color: #e5e5e5;
-  padding: 8px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  box-sizing: border-box;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+}
+.search::placeholder {
+  color: var(--text-dim);
 }
 .tabs-row {
   display: flex;
 }
 .tab {
   flex: 1;
-  padding: 12px 4px;
+  padding: 14px 4px;
   text-align: center;
   text-decoration: none;
-  color: inherit;
+  color: var(--text-dim);
   font-size: 14px;
+  border-top: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
 }
 .tab--active {
-  font-weight: bold;
-  border-top: 2px solid currentColor;
+  color: var(--accent);
+  border-top-color: var(--accent);
+  font-weight: 600;
 }
 </style>

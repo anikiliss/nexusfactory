@@ -95,14 +95,14 @@ function goBack() {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .back {
-  background: none;
-  border: 1px solid #555;
-  color: inherit;
-  padding: 6px 10px;
-  border-radius: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
   font-size: 14px;
 }
 .options {
@@ -111,22 +111,26 @@ function goBack() {
   margin: 0 0 24px 0;
 }
 .options li {
-  padding: 12px 0;
-  border-bottom: 1px solid #333;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.options em {
+  color: var(--text-dim);
+  font-style: italic;
 }
 .danger {
-  background: #5a1a1a;
-  border: 1px solid #a33;
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 4px;
-  font-size: 14px;
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+  color: var(--text);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
   width: 100%;
+  font-weight: 500;
 }
 .sep {
   margin: 32px 0 16px;
   border: none;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--border);
 }
 .debug-actions {
   display: flex;
@@ -135,24 +139,24 @@ function goBack() {
   flex-wrap: wrap;
 }
 .debug-actions button {
-  background: #1a3a5a;
-  border: 1px solid #357;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
 }
 .debug-info {
   font-size: 14px;
-  color: #ccc;
+  color: var(--text-dim);
   margin: 8px 0;
 }
 .debug-block {
-  background: #2a2a2a;
-  border: 1px solid #555;
-  color: #e8e8e8;
-  padding: 12px;
-  border-radius: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px;
+  border-radius: var(--radius-sm);
   font-size: 14px;
   line-height: 1.5;
   overflow-x: auto;
