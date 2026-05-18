@@ -16,12 +16,12 @@
 - [x] First commit (README.md)
 - [x] Create DESIGN.md
 - [x] Create TODO.md (this file)
-- [ ] Install Node.js in Termux
-- [ ] Initialize Vue 3 + Vite project skeleton
-- [ ] Verify `npm run dev` starts local server
-- [ ] Verify Chrome on phone can open the dev server
-- [ ] Create `.gitignore` (exclude node_modules, dist, etc.)
-- [ ] First commit of empty Vue project
+- [x] Install Node.js in Termux
+- [x] Initialize Vue 3 + Vite project skeleton
+- [x] Verify `npm run dev` starts local server
+- [x] Verify Chrome on phone can open the dev server
+- [x] Create `.gitignore` (exclude node_modules, dist, etc.)
+- [x] First commit of empty Vue project
 
 ## Phase 2 — Foundation (no gameplay yet)
 
