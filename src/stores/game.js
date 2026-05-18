@@ -1,15 +1,17 @@
 import { defineStore } from 'pinia'
+import { RECIPES } from '@/data/recipes'
 
 const SAVE_KEY = 'nexusfactory:save'
-const SAVE_VERSION = 1
+const SAVE_VERSION = 2
 
 function emptyState() {
   return {
     version: SAVE_VERSION,
     lastSaveTime: Date.now(),
     resources: {
-      ironOre: 0,
+      iron_ore: 0,
       coal: 0,
+      iron_ingot: 0,
     },
     power: {
       generation: 0,
@@ -19,6 +21,7 @@ function emptyState() {
     research: {
       unlocked: [],
     },
+    activeCraft: null,
   }
 }
 
@@ -26,6 +29,34 @@ export const useGameStore = defineStore('game', {
   state: () => emptyState(),
 
   actions: {
+    toggleCraft(recipeId) {
+      if (this.activeCraft === recipeId) {
+        this.activeCraft = null
+      } else {
+        this.activeCraft = recipeId
+      }
+    },
+
+    tickCraft(maxStoragePerResource) {
+      if (!this.activeCraft) return
+      const recipe = RECIPES[this.activeCraft]
+      if (!recipe) return
+
+      for (const [inputId, inputAmount] of Object.entries(recipe.inputs)) {
+        if ((this.resources[inputId] ?? 0) < inputAmount) return
+      }
+
+      const outId = recipe.output
+      const outMax = maxStoragePerResource[outId] ?? Infinity
+      const currentOut = this.resources[outId] ?? 0
+      if (currentOut + recipe.outputAmount > outMax) return
+
+      for (const [inputId, inputAmount] of Object.entries(recipe.inputs)) {
+        this.resources[inputId] -= inputAmount
+      }
+      this.resources[outId] = currentOut + recipe.outputAmount
+    },
+
     saveGame() {
       this.lastSaveTime = Date.now()
       try {
@@ -44,7 +75,7 @@ export const useGameStore = defineStore('game', {
       try {
         const data = JSON.parse(raw)
         if (data.version !== SAVE_VERSION) {
-          console.warn(`[load] version mismatch (save=${data.version}, expected=${SAVE_VERSION}), starting fresh`)
+          console.warn(`[load] version mismatch, starting fresh`)
           return
         }
         const now = Date.now()

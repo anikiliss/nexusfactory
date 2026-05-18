@@ -2,6 +2,7 @@
 import { RouterView, useRoute } from 'vue-router'
 import { computed, onMounted, onBeforeUnmount } from 'vue'
 import { useGameStore } from '@/stores/game'
+import { RESOURCES } from '@/data/resources'
 import TopBar from '@/components/TopBar.vue'
 import BottomBar from '@/components/BottomBar.vue'
 
@@ -11,6 +12,11 @@ const isSettings = computed(() => route.name === 'settings')
 const game = useGameStore()
 
 let autosaveTimer = null
+let craftTimer = null
+
+const maxStorageMap = Object.fromEntries(
+  Object.values(RESOURCES).map((r) => [r.id, r.maxStorage])
+)
 
 function handleBeforeUnload() {
   game.saveGame()
@@ -18,12 +24,14 @@ function handleBeforeUnload() {
 
 onMounted(() => {
   game.loadGame()
+  craftTimer = setInterval(() => game.tickCraft(maxStorageMap), 1000)
   autosaveTimer = setInterval(() => game.saveGame(), 30_000)
   window.addEventListener('beforeunload', handleBeforeUnload)
 })
 
 onBeforeUnmount(() => {
   if (autosaveTimer) clearInterval(autosaveTimer)
+  if (craftTimer) clearInterval(craftTimer)
   window.removeEventListener('beforeunload', handleBeforeUnload)
   game.saveGame()
 })

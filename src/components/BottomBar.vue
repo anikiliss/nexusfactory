@@ -2,10 +2,10 @@
 import { RouterLink } from 'vue-router'
 
 const tabs = [
-  { to: '/workbench', label: 'Workbench' },
-  { to: '/drills', label: 'Drills' },
-  { to: '/factories', label: 'Factories' },
-  { to: '/energy', label: 'Energy' },
+  { to: '/workbench', label: 'Верстак' },
+  { to: '/drills', label: 'Добыча' },
+  { to: '/factories', label: 'Производство' },
+  { to: '/energy', label: 'Питание' },
 ]
 </script>
 

@@ -2,7 +2,7 @@
 
 <template>
   <section class="view">
-    <h2>Drills</h2>
-    <p>Автоматический майнинг.</p>
+    <h2>Добыча</h2>
+    <p>Автоматический майнинг ресурсов.</p>
   </section>
 </template>
