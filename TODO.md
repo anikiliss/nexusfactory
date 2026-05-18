@@ -15,7 +15,7 @@
 - [x] Link local repo to remote
 - [x] First commit (README.md)
 - [x] Create DESIGN.md
-- [ ] Create TODO.md (this file)
+- [x] Create TODO.md (this file)
 - [ ] Install Node.js in Termux
 - [ ] Initialize Vue 3 + Vite project skeleton
 - [ ] Verify `npm run dev` starts local server
