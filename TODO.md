@@ -25,14 +25,14 @@
 
 ## Phase 2 — Foundation (no gameplay yet)
 
-- [ ] App shell: status bar visible, top bar, main area, bottom bar with 4 tab buttons
-- [ ] Tab routing (switch content when tapping tab)
-- [ ] Pinia store: empty state object scaffold
-- [ ] Save/Load to localStorage (auto-save every 30s)
-- [ ] Offline progress placeholder (logs delta time, doesn't apply yet)
-- [ ] Settings screen accessible via gear icon
-- [ ] "Reset progress" button in Settings (with confirm)
-- [ ] Color palette and base styles (dark theme, neon accents)
+- [x] App shell: status bar visible, top bar, main area, bottom bar with 4 tab buttons
+- [x] Tab routing (switch content when tapping tab)
+- [x] Pinia store: empty state object scaffold
+- [x] Save/Load to localStorage (auto-save every 30s)
+- [x] Offline progress placeholder (logs delta time, doesn't apply yet)
+- [x] Settings screen accessible via gear icon
+- [x] "Reset progress" button in Settings (with confirm)
+- [x] Color palette and base styles (dark theme, neon accents)
 
 ## Phase 3 — Resources & Workbench
 
