@@ -33,15 +33,15 @@ On completion: cutscene placeholder (black screen with "CUTSCENE" text + skip bu
 ### Screen Structure
 - Android status bar visible (time, battery, signal)
 - Game is NOT fullscreen by default (fullscreen is a future setting)
-- Top bar: search field, key stat (current MW), settings gear (top-right)
+- Top bar: key stat (current MW), settings gear (top-right)
 - Main area: current tab content
-- Bottom bar: tab buttons (max 5)
+- Bottom bar: search field (above tabs) + tab buttons (max 5)
 
-### Tabs (MVP order)
-1. **Workbench** — manual crafting (available from start)
-2. **Drills** — automated mining (each drill is upgradeable)
-3. **Factories** — automated crafting (faster than workbench)
-4. **Energy** — power generation and consumption overview
+### Tabs (MVP order, RU labels)
+1. **Верстак** (workbench) — manual crafting (available from start)
+2. **Добыча** (drills) — automated mining (each drill is upgradeable)
+3. **Производство** (factories) — automated crafting (faster than workbench)
+4. **Питание** (energy) — power generation and consumption overview
 
 Other tabs (Ship, Stats, etc.) are accessed via icons in the top bar or via Settings, not bottom tabs.
 
@@ -53,7 +53,7 @@ Other tabs (Ship, Stats, etc.) are accessed via icons in the top bar or via Sett
 
 - Per-tab search (each tab has its own independent search)
 - Search only matches items relevant to the current tab
-- Triggered by tapping the search bar at the top
+- Triggered by tapping the search bar at the bottom (above tab buttons)
 - Fullscreen overlay opens with input field at bottom (above keyboard)
 - Results above the input, scrollable
 - Each result row: icon left, name center, pin/delete buttons right
@@ -68,7 +68,7 @@ Other tabs (Ship, Stats, etc.) are accessed via icons in the top bar or via Sett
 
 Back button works like a hierarchy:
 
-- Tab "Factories"
+- Tab "Производство"
   - List of factory types (Constructor, Assembler, Smelter...)
     - Specific factory instance (recipes: gold ingot, ...)
       - Upgrade window (production speed)
@@ -93,6 +93,23 @@ Backlog resources (not in MVP): copper, gold, wood, water, oil, gasoline, fuel o
 - **Coal Generator** — better power, consumes coal
 - **Constructor** — single automated factory (e.g. ingot to plate)
 
+## Storage Rules
+
+- **Workbench storage cap is HARD 999 per resource.** Never upgradable, ever. This is intentional friction to push the player toward automation. Reaching 999 means "you're done mining by hand, build a drill".
+- **Drill storage** is per-drill, upgradeable via research.
+- **Factory storage** is shared (warehouse-style), upgradeable via Storage Building.
+- **Storage Building level is gated by Ship level** — to upgrade storage you must first advance the Ship.
+
+## Ship as Central Platform
+
+The Ship is the central progression axis. The entire industry is built on top of it.
+
+- Starts as crash debris (small flat footprint).
+- Each Ship level expands the platform — visually grows in size as the player progresses.
+- New decks and sections appear with each tier.
+- Ship level gates Storage Building upgrades, which gate Factory capacity.
+- Sequence: Build ship parts → Ship level up → Storage tier up → Factory storage up.
+
 ## Energy System
 
 - Each building has a max power draw in MW
@@ -115,7 +132,7 @@ Backlog resources (not in MVP): copper, gold, wood, water, oil, gasoline, fuel o
   2. Unlock Coal Generator
   3. Unlock Constructor
   4. Increase drill production +25%
-  5. Increase storage capacity
+  5. Increase storage capacity (factory only — Workbench cap is hard 999)
 
 ## Save / Load
 
@@ -157,13 +174,42 @@ Ideas approved but deferred. Recorded so they're not lost.
 - **Fullscreen toggle:** for users who prefer immersion.
 - **Cloud save:** sync between devices. Probably not.
 - **Achievements:** with progress bars.
-- **Cookie-clicker style tap-to-boost:** tap on drill for +1 ore or +5 sec speed.
+- **Battery / accumulator buildings:** store excess energy, release on demand. Buffers brief deficits (e.g. 5 minutes) while player rushes to upgrade generators. Deferred to keep early energy mechanics simple.
+
+---
+
+# Long-term Vision (Sequel & Beyond)
+
+Direction for the game's evolution after MVP ships.
+
+## Sequel: Space Phase
+
+After the player builds the ship and escapes the planet (current MVP end), the natural continuation is space.
+
+- **Setting:** open space, asteroid fields.
+- **Mining shift:** no more coal (it doesn't exist in asteroids). Iron, ice, rare metals.
+- **Energy shift:** ice → water → hydrogen → fusion. Brand new energy chain.
+- **Story arc:** find a new home or build one. Search for habitable planets, or terraform.
+- **Why this matters:** MVP ending no longer feels like "the end" but like "act 1 finale". Player isn't disappointed by winning — they're hyped for what's next.
+
+## Visual Growth of the Platform
+
+Ship grows visibly tier by tier. Player sees their base literally become bigger.
+
+- Tier 1: crash debris, small flat surface, 1-2 buildings fit.
+- Tier 5: organized base, multiple decks, factories visible.
+- Tier 10+: massive industrial platform, vertical sections.
+- Possible rendering: 2D grid or simple SVG diagram, top-down or isometric.
+
+This becomes a strong silent reward: the player doesn't need text to feel they progressed.
+
+---
 
 ## Tech Stack (decided later)
 
-- Vue 3 + Vite (likely)
-- Pinia for state management
-- localStorage for save
+- Vue 3 + Vite (decided)
+- Pinia for state management (decided)
+- localStorage for save (decided)
 - No backend
 - Build target: PWA, then APK via bubblewrap (in proot-distro Ubuntu inside Termux)
 
@@ -177,10 +223,10 @@ Things we haven't decided yet:
 - Whether to allow building multiple instances of the same factory type
 - Maximum upgrade level per building
 - Specific numbers (production rates, costs) — will balance during playtesting
-- Visual style: flat design with long shadow (samples shown, not finalized)
+- Visual style: stylized realistic icons (Iron Ore, Coal, Drill, Solar Panel done in this style)
 
 ---
 
-*Document version: 0.1*
+*Document version: 0.2*
 *Last updated: 2026-05-18*
 *Maintained by: anikiliss + Claude (Kisa)*
