@@ -48,6 +48,7 @@ Other tabs (Ship, Stats, etc.) are accessed via icons in the top bar or via Sett
 ### Settings
 - Accessed via gear icon top-right
 - Contains: sound, vibration, language, reset progress, export/import save, stats
+- **Ad gallery:** "Просмотренные рекламы" — list of all ad cutscenes the player has triggered. Tap to rewatch.
 
 ## Search
 
@@ -122,11 +123,49 @@ The Ship is the central progression axis. The entire industry is built on top of
   - Graph X axis: last 1 hour of game time
   - List of consumers sorted by usage
 
+## Ad Cutscenes
+
+Each MAM research node can be sped up once via watching a humorous ad cutscene. This is an entirely offline feature — videos are bundled inside the APK, no network calls.
+
+### Mechanics
+
+- Each research has its own unique ad video. Ads do not repeat across researches.
+- Below the research progress bar is a button: **"Ускорить"** with a 🎬 icon next to it, hinting at the video.
+- Tapping the button opens a fullscreen ad cutscene overlay.
+- **"Пропустить"** (skip) button is available immediately — no forced watching.
+- Whether the player watches fully or skips instantly, the bonus is granted on tap: **-50% of remaining research time**.
+- After use, the button becomes greyed out and disabled for that research. One use per research, ever.
+- Ad fullscreen overlay disables tab navigation while shown. Only "Пропустить" closes it.
+
+### Content
+
+- Ads are nostalgic / absurd / hilarious old commercials (Japanese roof tiles, 90s shampoo, etc.) curated by the developer.
+- All videos are bundled in `src/assets/ads/` and shipped with the APK.
+- Audio is included. Players can mute via system volume; in-game audio toggle (backlog) will also apply.
+- Suggested format: MP4 (H.264), 480p, ~30 seconds, 5-20 MB each.
+- File naming convention: `ad_<research_id>.mp4` (e.g. `ad_coal_drill.mp4`).
+
+### Gallery
+
+- Settings → "Просмотренные рекламы" (Watched ads).
+- Lists all ads the player has unlocked (i.e. triggered at least once).
+- Each item: video thumbnail (first frame), title (matching research name), tap to rewatch.
+- Rewatching is free, no bonus, purely entertainment.
+- Encourages players to share favorites with friends.
+
+### Why this design
+
+- Player retains control: opt-in, instant skip, no forced viewing.
+- Variety: each ad is unique, so curiosity drives engagement.
+- Gallery turns each ad into a small reward worth collecting.
+- No real ads, no SDK, no network — game stays fully offline and respectful of the player.
+
 ## MAM (Research)
 
 - Each upgrade or new building must first be unlocked in MAM
 - Research costs resources (about 10x the normal cost) and produces a prototype
 - After unlock, the actual building costs normal price
+- Each research has a time cost (stored as seconds in state)
 - 5 starting research nodes in MVP:
   1. Unlock Coal Drill
   2. Unlock Coal Generator
@@ -175,6 +214,7 @@ Ideas approved but deferred. Recorded so they're not lost.
 - **Cloud save:** sync between devices. Probably not.
 - **Achievements:** with progress bars.
 - **Battery / accumulator buildings:** store excess energy, release on demand. Buffers brief deficits (e.g. 5 minutes) while player rushes to upgrade generators. Deferred to keep early energy mechanics simple.
+- **Golden ad:** rare premium ad cutscene with doubled bonus (-100% time = instant completion). Triggers on a random small chance when "Ускорить" is tapped.
 
 ---
 
@@ -227,6 +267,6 @@ Things we haven't decided yet:
 
 ---
 
-*Document version: 0.2*
-*Last updated: 2026-05-18*
+*Document version: 0.3*
+*Last updated: 2026-05-19*
 *Maintained by: anikiliss + Claude (Kisa)*

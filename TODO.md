@@ -36,15 +36,15 @@
 
 ## Phase 3 — Resources & Workbench
 
-- [ ] Define data model for resources (id, name, icon, current amount, max storage)
-- [ ] Iron ore and coal as starting resources (amount = 0)
-- [ ] Workbench tab UI: list of recipes
-- [ ] Recipe data model (input resources, output resource, craft time)
-- [ ] Tap recipe to start crafting (single craft)
-- [ ] Craft progress visual (progress bar)
-- [ ] Add resource to inventory on craft complete
+- [x] Define data model for resources (id, name, icon, current amount, max storage)
+- [x] Iron ore and coal as starting resources (amount = 0)
+- [x] Workbench tab UI: list of recipes
+- [x] Recipe data model (input resources, output resource, craft time)
+- [x] Tap recipe to start crafting (toggle on/off, auto-tick every second)
+- [x] Add resource to inventory on craft complete
+- [x] Storage cap: can't exceed max storage for a resource
+- [ ] Craft progress visual (small progress bar inside card while ticking)
 - [ ] Resource display in top bar (current MW, current iron, current coal)
-- [ ] Storage cap: can't exceed max storage for a resource
 
 ## Phase 4 — Drills (auto-mining)
 
@@ -78,11 +78,26 @@
 ## Phase 7 — MAM (Research)
 
 - [ ] MAM as a separate screen (icon in top bar or as part of a tab)
-- [ ] Research data model (id, name, cost, unlocks)
+- [ ] Research data model (id, name, cost, unlocks, timeSeconds)
 - [ ] 5 starting research nodes (see DESIGN.md)
 - [ ] Research consumes resources instantly
+- [ ] Time-based progress (stored in seconds, ticks down per second)
 - [ ] On complete: unlock corresponding building/upgrade
 - [ ] Lock state in UI (locked buildings shown greyed out)
+- [ ] Time format utility: seconds → "1:23:45" / "23:45" / "45 сек"
+
+## Phase 7.5 — Ad Cutscenes
+
+- [ ] Folder `src/assets/ads/` for bundled videos
+- [ ] AdCutscene.vue component (fullscreen overlay, video element, Skip button)
+- [ ] Skip button always available, top-right corner
+- [ ] "Ускорить 🎬" button in each research card
+- [ ] On tap: open AdCutscene, regardless of close/skip → apply -50% to research.timeLeft
+- [ ] Mark research.adWatched = true, button becomes greyed out
+- [ ] Persist watched ads list in save (for gallery)
+- [ ] Settings: "Просмотренные рекламы" gallery, rewatch any unlocked ad
+- [ ] Ensure ad overlay disables tab navigation while open
+- [ ] At least 1 ad video bundled for testing (Japanese roof tiles 😄)
 
 ## Phase 8 — Ship & Win
 
@@ -114,7 +129,7 @@
 # After MVP
 
 Next steps once v0.1 is playable:
-- Switch text/emoji icons to AI-generated images
+- Switch text/emoji icons to AI-generated images (in progress: iron_ore, coal, drill, solar_panel already realistic)
 - Sound effects
 - Vibration
 - Tips and tutorial system
@@ -125,4 +140,4 @@ Next steps once v0.1 is playable:
 
 ---
 
-*Last updated: 2026-05-18*
+*Last updated: 2026-05-19*
